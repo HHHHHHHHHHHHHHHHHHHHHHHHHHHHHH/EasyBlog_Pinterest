@@ -149,10 +149,9 @@ Meet with 1NF, 2NF, 3NF, BCNF requirements
 ### Where The App Is Doing Create, Read, Update, and Delete ( CRUD )
 ---
 
-
-
 ### Entity Relationship Diagram (ERD) For The Database
 ---
+[![](https://github.com/bamboovir/EasyBlog_Pinterest/image/E-R.png)]()
 
 ### GIF Demonstration Of The Application
 ---
