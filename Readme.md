@@ -151,7 +151,7 @@ Meet with 1NF, 2NF, 3NF, BCNF requirements
 
 ### Entity Relationship Diagram (ERD) For The Database
 ---
-[![](https://github.com/bamboovir/EasyBlog_Pinterest/image/E-R.png)]()
+[![](https://github.com/bamboovir/EasyBlog_Pinterest/blob/master/image/E-R.png)]()
 
 ### GIF Demonstration Of The Application
 ---
