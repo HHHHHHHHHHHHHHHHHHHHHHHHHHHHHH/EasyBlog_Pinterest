@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+
+<html>
+<style>
+    .header{
+        position: relative;
+        height:56px;
+        z-index:2;
+        margin:0px;
+        padding:0px;
+        background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(white), to(white));
+        border:1px solid #111;
+        
+        
+
+    }
+    .picture,.search,.picture,.home,.signin,.signout{
+        text-align: center;
+        float: left;
+        height: 30px;
+    }
+    .header button{
+        border-radius: 10px;
+        height: 30px;
+        width: 80%;
+        border-style: hidden;
+        background-color: white;
+    }
+    .header button:hover{
+        background-color: black;
+        color:aliceblue;
+    }
+    .header .blank{
+        height: 12px;
+        
+    }
+    .header .picture{
+        width: 5%;
+        text-align: center;
+        
+    }
+    .header .search{
+        width: 80%;
+        background-color: white;
+        
+         
+    }
+    .searchdiv{
+        height: 30px;
+        float: left;
+    }
+    .searchpic{
+        width: 3%;
+    }
+    .searchtext{
+        width: 97%;
+        resize:none;
+        color:grey;
+        background-color: whitesmoke;
+    }
+    .header .home{
+        width: 5%;
+        
+        
+    }
+    .header .signin{
+        width: 5%;
+        
+        
+    }
+    .header .signout{
+       width: 5%; 
+        
+        
+    }
+    
+    
+    a:link{
+        text-decoration: none;
+ 	}
+</style>
+
+    <body>
+    <div class="header">
+        <div class="blank"></div>
+        <div class="picture">
+            <img alt="cat" src="Cat.jpg" height=40px width=40px style="border-radius:50%">
+        </div>
+        <div class="search">
+            <div>
+                <img class="searchdiv searchpic" alt="magnifying" src="magnifying.png">
+            </div>
+            <div>
+                <textarea class="searchdiv searchtext">Search</textarea>
+                <script> 
+                $(document).ready(function(){
+    $(".searchtext").click(function(){
+        $(".searchtext").val("");
+    });
+    });
+                </script>
+            </div>
+        </div>
+        <div class="home">
+            <button> home </button>
+        </div>
+        <div class="signin">
+            <button> signin </button>
+        </div>
+        <div class="signout">
+            <button> signout </button>
+        </div>
+    </div>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

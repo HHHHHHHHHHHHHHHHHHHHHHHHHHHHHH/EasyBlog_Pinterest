@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+
+<html lang="en" class="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" id="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../css/1.css">
+    <link rel="stylesheet" href="../css/2.css">
+    <link rel="stylesheet" href="../css/3.css">
+    <script src="../js/easyblog.js" charset="utf-8"></script>
+    <meta name="application-name" content="EasyBlog">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <title>EasyBlog</title>
+
+</head>
+
+<body>
+        <div id="create_board" class="ReactModalPortal" >
+                <div data-reactroot="" class="ReactModal__Overlay ReactModal__Overlay--after-open">
+                    <div class="ReactModal__Content ReactModal__Content--after-open BoardCreate BoardEditBase dangerouslyDisableFocusStyle Module ReactModal__Content inModal modalHasClose"
+                        tabindex="-1">
+                        <div class="_0 _25 _41 _55 _5e _jo _jp" style="max-width: 600px;">
+                            <form method="post">
+                                <div class="_0 _25 _41 _kq _l6 _lo">
+                                    <h5 class="_st _sl _jt _jr _ss _t4 _5j _sq">Create board</h5>
+                                </div>
+                                <hr class="_v6 _3k _4y _jq">
+                                <div role="list" class="_0 _25 _41">
+                                    <div class="_0 _25 _41">
+                                        <div role="listitem" class="_0 _25 _41">
+                                            <div class="_0 _25 _41 _2 _47 _4a _h _kq _l6">
+                                                <div class="_0 _25 _41 _11 _2j _1i _2y _kr">
+                                                    <label class="_vk _3k _n5" for="boardEditName">
+                                                        <div class="_st _ss _su _sk _5j _sm _sq _nk _nl _nm _nn">Name</div>
+                                                    </label>
+                                                </div>
+                                                <div class="_0 _25 _41 _11 _2j _1o _34">
+                                                    <span>
+                                                        <input type="text" aria-invalid="false" class="_xb _25 _41 _sl _5g _5j _no _np _nq _nr _2j _xc _4x" id="boardEditName" name="boardName"
+                                                            placeholder="Like &quot;Places to Go&quot; or &quot;Recipes to Make&quot;"
+                                                            value="">
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr class="_v6 _3k _4y _jq">
+                                    </div>
+                                    <div class="_0 _25 _41">
+                                        <div role="listitem" class="_0 _25 _41">
+                                            <div class="_0 _25 _41 _2 _47 _4a _h _kq _l6">
+                                                <div class="_0 _25 _41 _11 _2j _1i _2y _kr">
+                                                    <label class="_vk _3k _n5" for="secret">
+                                                        <div class="_st _ss _su _sk _5j _sm _sq _nk _nl _nm _nn">
+                                                            <div class="_0 _25 _41">
+                                                                <!-- react-text: 28 -->Secret
+                                                                <!-- /react-text -->
+                                                                <div class="_0 _25 _41">
+                                                                    <a class="_vl _sl _sp _vm _25 _5j _vo _3k" href="https://www.pinterest.com/_/_/help/articles/all-about-boards/?qa=3&amp;source=secret_create"
+                                                                        rel="noopener noreferrer" target="_blank">
+                                                                        <div class="_st _ss _su _sk _5j _sm _rk _rl _rm _rn _q4 _q5 _q6 _q7 _sq _nk _nl _nm _nn _oo _op _oq _or">Learn more</div>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </label>
+                                                </div>
+                                                <div class="_0 _25 _41 _11 _2j _1o _34">
+                                                    <div class="_0 _25 _41 _kr">
+                                                        <div class="_wr _3k _41 _3u _ww _5e">
+                                                            <input type="checkbox" class="_x2 _3w _2j _jq _5a _jv _x3 _n5" id="secret" name="secret" value="on">
+                                                            <div class="_wx _41 _3w _5e _53 _wz _x1"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr class="_v6 _3k _4y _jq">
+                                    </div>
+                                </div>
+                                <div class="_0 _25 _41 _2 _47 _4a _4l _h _kq _l6">
+                                    <div class="_0 _25 _41 _jo">
+                                        <div class="_0 _25 _41 _2 _h _k6 _k7">
+                                            <div class="_0 _25 _41 _kb">
+                                                <button class="_mr _41 _mv _ms _5a _n0 _5g _mt _25 _n5 _my _3m" type="button">
+                                                    <div class="_st _ss _sw _sl _5j _sm _no _np _nq _nr">Cancel</div>
+                                                </button>
+                                            </div>
+                                            <div class="_0 _25 _41 _kb">
+                                                <button class="_mr _41 _mv _ms _5a _mz _5g _my _3m" disabled="" type="submit">
+                                                    <div class="_st _ss _sw _sl _5h _sm _no _np _nq _nr">Create</div>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <button class="Button Module borderless cancelButton closeModal inModal show" type="button">
+                            <svg class="_mg _5h _mh _3k" height="20" width="20" viewBox="0 0 24 24" aria-label="Close modal" role="img">
+                                <title>Close modal</title>
+                                <path d="M15.18,12.00 L22.34,4.84 C23.22,3.96 23.22,2.54 22.34,1.66 C21.46,0.78 20.04,0.78 19.16,1.66 L12.00,8.82 L4.84,1.66 C3.96,0.78 2.54,0.78 1.66,1.66 C0.78,2.54 0.78,3.96 1.66,4.84 L8.82,12.00 L1.66,19.16 C0.78,20.04 0.78,21.46 1.66,22.34 C2.10,22.78 2.67,23.00 3.25,23.00 C3.83,23.00 4.40,22.78 4.84,22.34 L12.00,15.18 L19.16,22.34 C19.60,22.78 20.17,23.00 20.75,23.00 C21.33,23.00 21.90,22.78 22.34,22.34 C23.22,21.46 23.22,20.04 22.34,19.16 L15.18,12.00 Z"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+</body>
+
+</html>
