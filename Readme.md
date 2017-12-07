@@ -1,3 +1,5 @@
+<link href="http://github.com/yrgoldteeth/darkdowncss/raw/master/darkdown.css"rel="stylesheet"></link>
+
 ## EasyBlog 
 ---
 [![CocoaPods](https://img.shields.io/cocoapods/l/AFNetworking.svg)]()
@@ -10,10 +12,14 @@
 
 ### Description Of Application
 
-- [ ] UI Design Is Similar To pinterest.com (Not Completed)
+>  A social network prototype
+>  Custom Custom visual webpage & UI
+
 - [x] Personal Blog Service (Has The Potential To Expand Into Social Applications)
+- [x] Support Follow & UnFollow , Like & UnLike , etc 
 - [x] Can Be More Convenient To Manage Blog Compared With Wordpress (Minimalism & Lightweight)
-- [x] Support Markdown / HTML Format 
+- [x] Support Markdown / HTML Format
+- [ ] UI Design Is Similar To pinterest.com ( Example ) 
 - [ ] Support GitHub Calendar HeatMap (Not Completed)
 
 ### Technology stack 
