@@ -23,7 +23,7 @@
 
 [![](https://img.shields.io/badge/maven-v%204.0.0-green.svg)]()
 
-[![](https://img.shields.io/badge/develop%20Progress-70%-red.svg)]()
+[![](https://img.shields.io/badge/Progress-70%-red.svg)]()
 
 [![](https://img.shields.io/badge/author-Huiming%20|%20Dinghao%20|%20YuHan%20|%20YuJia-red.svg)]()
 
