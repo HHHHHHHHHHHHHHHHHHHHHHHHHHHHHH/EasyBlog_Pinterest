@@ -1,6 +1,23 @@
-<link href="http://github.com/yrgoldteeth/darkdowncss/raw/master/darkdown.css"rel="stylesheet"></link>
+
 
 ## EasyBlog 
+---
+
+<!-- TOC -->
+
+- [EasyBlog](#easyblog)
+    - [Description Of Application](#description-of-application)
+    - [Technology stack](#technology-stack)
+    - [The Schema For The Database (The Table Definitions)](#the-schema-for-the-database-the-table-definitions)
+    - [Where The App Is Doing Create, Read, Update, and Delete ( CRUD )](#where-the-app-is-doing-create-read-update-and-delete--crud-)
+    - [Entity Relationship Diagram (ERD) For The Database](#entity-relationship-diagram-erd-for-the-database)
+    - [GIF Demonstration Of The Application](#gif-demonstration-of-the-application)
+    - [Docker file](#docker-file)
+    - [How To Deploy](#how-to-deploy)
+    - [Team Members](#team-members)
+
+<!-- /TOC -->
+
 ---
 [![CocoaPods](https://img.shields.io/cocoapods/l/AFNetworking.svg)]()
 
@@ -153,11 +170,60 @@
 ")\r\n" + 
 "ENGINE = InnoDB;")
 ```
+7. Behavior
+```sql
+"CREATE TABLE `easyblog`.`behavior` (\r\n" + 
+"  `behaviorId` VARCHAR(100) NOT NULL,\r\n" + 
+"  `masterId` VARCHAR(100) NOT NULL,\r\n" + 
+"  `slaveId` VARCHAR(100) NOT NULL,\r\n" + 
+"  `behaviorType` VARCHAR(100) NOT NULL,\r\n" + 
+"  `behaviorTime` BIGINT UNSIGNED NOT NULL,\r\n" + 
+"  PRIMARY KEY (`behaviorId`)\r\n" + 
+")\r\n" + 
+"ENGINE = InnoDB;")
+```
 
 Meet with 1NF, 2NF, 3NF, BCNF requirements
 
 ### Where The App Is Doing Create, Read, Update, and Delete ( CRUD )
 ---
+
+- **Create**  <- () {
+
+    1. Create A *Non-Certified* `User`
+    2. Create A Certified `User` By Verified Email Addresses 
+    3. Create A New `Post` By A Certified User
+    4. Create A New `Board` By A Certified User
+    5. Create A New `Tag` To [ `Post` | `Board`] By A Certified `User`
+    6. Create A New `Behavior` [ `Follow` | `UnFollow` | `Like` | `UnLike` | `Read` | `Get` | `.....`]
+    7. . . .  etc 
+
+    }
+
+- **Read**    <- () {
+    1. Read `User`'s Meta-Infomation
+    2. Read `Post`'s Meta-Infomation
+    3. Read `Board`'s Infomation
+    4. Read `Post`'s Tags
+    5. Read `User`'s Follow List
+    6. Read `User`'s Like List
+    7. . . . etc
+
+    }
+- **Update**  <- (){
+    1. Update A Certified `User`'s Meta-Infomation : Such as, Avatar, UserName, FullName
+    2. Update A `Post`'s Meta-Infomation : Such as , CoverImage , PostName
+    3. Update A `Board`'s Meta-Infomation : Such as , CoverImage , BoardName
+    4. . . . etc 
+    }
+- **Delete**  <- (){
+    1. Delete A Certified `User`
+    2. Delete A `Post`
+    3. Delete A `Board`
+    4. Delete A `Tag`
+    5. . . . etc
+    
+    }
 
 ### Entity Relationship Diagram (ERD) For The Database
 ---
@@ -175,11 +241,11 @@ Meet with 1NF, 2NF, 3NF, BCNF requirements
 
 ### Team Members
 ---
-- Huiming Sun 	(Back-end & Front-end )
-- Yuhan Chen 	(Front-end: )
-- Hao Ding		(Front-end: )
-- Yujia Wang 	(Front-end: )
+- *Huiming Sun* 	(`Back-end` & `Front-end` )
+- *Yuhan Chen* 	    (`Front-end` )
+- *Hao Ding*		(`Front-end` )
+- *Yujia Wang* 	    (`Front-end` )
 
 ----
 
-enjoy ( * _ * ) -> Fork
+Enjoy ( * _ * )
