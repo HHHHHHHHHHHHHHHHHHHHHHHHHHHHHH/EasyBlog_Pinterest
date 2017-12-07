@@ -30,7 +30,7 @@
 ### Description Of Application
 
 >  A social network prototype
->  Custom Custom visual webpage & UI
+>  Could Custom visual webpage & UI
 
 - [x] Personal Blog Service (Has The Potential To Expand Into Social Applications)
 - [x] Support Follow & UnFollow , Like & UnLike , etc 
@@ -170,7 +170,7 @@
 ")\r\n" + 
 "ENGINE = InnoDB;")
 ```
-7. Behavior
+7. **Behavior**
 ```sql
 "CREATE TABLE `easyblog`.`behavior` (\r\n" + 
 "  `behaviorId` VARCHAR(100) NOT NULL,\r\n" + 
