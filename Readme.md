@@ -237,6 +237,26 @@ Meet with 1NF, 2NF, 3NF, BCNF requirements
 
 ### How To Deploy
 ---
+- About application.properties
+
+```
+server.port=8080
+spring.datasource.url=jdbc:mysql://localhost:3306/easyblog?autoReconnect=true&useSSL=false&useUnicode=yes&characterEncoding=UTF-8&allowMultiQueries=true
+spring.datasource.username=root
+spring.datasource.password=6666
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+spring.http.multipart.max-file-size=30MB
+spring.http.multipart.max-request-size=30MB
+spring.datasource.type=com.zaxxer.hikari.HikariDataSource
+logging.level.com.bamboovir.easyblog.mapper=trace
+spring.kafka.bootstrap-servers=localhost:9092
+spring.kafka.consumer.group-id=myGroup
+spring.kafka.consumer.key-deserializer=org.apache.kafka.common.serialization.StringDeserializer
+spring.kafka.consumer.value-deserializer=org.apache.kafka.common.serialization.StringDeserializer
+spring.kafka.producer.key-serializer=org.apache.kafka.common.serialization.StringSerializer
+spring.kafka.producer.value-serializer=org.apache.kafka.common.serialization.StringSerializer
+```
+
 
 
 ### Team Members
