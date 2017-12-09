@@ -1,12 +1,13 @@
 
 
-## EasyBlog 
+## EasyBlog <- A Simple Social Network Service Prototype
 ---
 
 <!-- TOC -->
 
-- [EasyBlog](#easyblog)
+- [EasyBlog <- A Simple Social Network Service Prototype](#easyblog---a-simple-social-network-service-prototype)
     - [Description Of Application](#description-of-application)
+    - [API Page :](#api-page-)
     - [Technology stack](#technology-stack)
     - [The Schema For The Database (The Table Definitions)](#the-schema-for-the-database-the-table-definitions)
     - [Where The App Is Doing Create, Read, Update, and Delete ( CRUD )](#where-the-app-is-doing-create-read-update-and-delete--crud-)
@@ -23,7 +24,9 @@
 
 [![](https://img.shields.io/badge/maven-v%204.0.0-green.svg)]()
 
-[![](https://img.shields.io/badge/Progress-70%-red.svg)]()
+[![](https://img.shields.io/badge/Progress-70%25-yellow.svg)]()
+
+[![Code Climate](https://img.shields.io/codeclimate/issues/github/me-and/mdf.svg)]()
 
 [![](https://img.shields.io/badge/author-Huiming%20|%20Dinghao%20|%20YuHan%20|%20YuJia-red.svg)]()
 
@@ -38,6 +41,11 @@
 - [x] Support Markdown / HTML Format
 - [ ] UI Design Is Similar To pinterest.com ( Example ) 
 - [ ] Support GitHub Calendar HeatMap (Not Completed)
+
+### API Page :
+
+http://muresearch.missouri.edu/DEVELOPERS/huiming/Swagger%20UI.html
+
 
 ### Technology stack 
 ---
@@ -231,6 +239,7 @@ Meet with 1NF, 2NF, 3NF, BCNF requirements
 
 ### GIF Demonstration Of The Application
 ---
+
 
 ### Docker file
 ---
