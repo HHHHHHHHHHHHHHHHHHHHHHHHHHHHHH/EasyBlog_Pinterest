@@ -26,7 +26,7 @@
 
 [![](https://img.shields.io/badge/Progress-70%25-yellow.svg)]()
 
-[![Code Climate](https://img.shields.io/codeclimate/issues/github/me-and/mdf.svg)]()
+[![Code Climate](https://img.shields.io/badge/issue-3-orange.svg)]()
 
 [![](https://img.shields.io/badge/author-Huiming%20|%20Dinghao%20|%20YuHan%20|%20YuJia-red.svg)]()
 
@@ -272,7 +272,6 @@ spring.kafka.producer.value-serializer=org.apache.kafka.common.serialization.Str
 ---
 - *Huiming Sun* 	(`Back-end` & `Front-end` )
 - *Yuhan Chen* 	    (`Front-end` )
-- *Hao Ding*		(`Front-end` )
 - *Yujia Wang* 	    (`Front-end` )
 
 ----
