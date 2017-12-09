@@ -270,9 +270,10 @@ spring.kafka.producer.value-serializer=org.apache.kafka.common.serialization.Str
 
 ### Team Members
 ---
-- *Huiming Sun* 	(`Back-end` & `Front-end` )
-- *Yuhan Chen* 	    (`Front-end` )
-- *Yujia Wang* 	    (`Front-end` )
+- *Huiming Sun* 	(`Back-end` )
+- *Yuhan Chen* 	    ()
+- *Yujia Wang* 	    ( )
+- *Ding Hao*        ()
 
 ----
 
