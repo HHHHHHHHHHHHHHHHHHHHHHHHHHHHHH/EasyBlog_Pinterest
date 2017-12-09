@@ -10,7 +10,6 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import com.bamboovir.easyblog.model.Post;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Mapper
 public interface PostMapper {
@@ -42,9 +41,21 @@ public interface PostMapper {
 			@Param("isPrivate")Boolean isPrivate,
 			@Param("description")String description,
 			@Param("url")String url);
-
-	@Delete("delete FROM post where postId=#{postId}")
-	void deletePostByID(@Param("postId") String postId);
+	
+	@Update("UPDATE post SET postName=#{postName} WHERE id=#{id}")
+	void updatePostNameByID(@Param("type") String type , @Param("id") String id);
+	
+	@Update("UPDATE post SET picNum=#{picNum} WHERE id=#{id}")
+	void updatePicNumByID(@Param("picNum") String picNum , @Param("id") String id);
+	
+	@Update("UPDATE post SET isPrivate=#{isPrivate} WHERE id=#{id}")
+	void updateIsPrivateByID(@Param("isPrivate") Boolean isPrivate , @Param("id") String id);
+	
+	@Update("UPDATE post SET description=#{description} WHERE id=#{id}")
+	void updateDescriptionByID(@Param("description") String description , @Param("id") String id);
+	
+	@Update("UPDATE post SET url=#{url} WHERE id=#{id}")
+	void updateUrlByID(@Param("url") String url , @Param("id") String id);
 	
 	@Delete("delete FROM post where 1 = 1;")
 	void deleteAllPost();
@@ -52,8 +63,11 @@ public interface PostMapper {
 	@Delete("delete FROM post where userId=#{userId}")
 	void deleteByUserID(@Param("userId") String userId);
 	
-	@Select("select * from post where userId=#{userId}")
-	List<Post> findPostsByUserID(@Param("userId") String userId);
+	@Delete("delete FROM post where postId=#{postId}")
+	void deleteByPostID(@Param("postId") String postId);
+	
+	@Select("select * from post where userId=#{userId} AND isPrivate=#{isPrivate}")
+	List<Post> findPostsByUserID(@Param("userId") String userId,@Param("isPrivate") Boolean isPrivate);
 	
 	@Select("select * from post where postid=#{postId}")
 	Post findPostByID(@Param("postId") String postId);

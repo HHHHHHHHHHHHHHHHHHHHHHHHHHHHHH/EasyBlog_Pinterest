@@ -3,6 +3,7 @@ package com.bamboovir.easyblog.storage;
 import org.springframework.core.io.Resource;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.bamboovir.easyblog.model.Image;
 import com.bamboovir.easyblog.model.Post;
 
 import java.nio.file.Path;
@@ -23,10 +24,10 @@ public interface StorageService {
     
     //------------------
     // Pic : Pics
-    void storePic(MultipartFile file, Post post);
+    void storePic(MultipartFile file, Image image);
     
     Path loadPic(String filename);
     
-    Resource loadAsPicResource(Post post,Integer index);
+    Resource loadAsPicResource(Image image);
     
 }

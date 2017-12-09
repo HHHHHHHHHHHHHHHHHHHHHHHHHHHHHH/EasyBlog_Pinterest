@@ -28,19 +28,26 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.bamboovir.easyblog.email.JavaEmail;
+import com.bamboovir.easyblog.mapper.BehaviorMapper;
 import com.bamboovir.easyblog.mapper.BoardMapper;
 import com.bamboovir.easyblog.mapper.ImageMapper;
 import com.bamboovir.easyblog.mapper.PostMapper;
 import com.bamboovir.easyblog.mapper.TagMapper;
 import com.bamboovir.easyblog.mapper.UnAuthUserMapper;
 import com.bamboovir.easyblog.mapper.UserMapper;
+import com.bamboovir.easyblog.model.BehaviorType;
+import com.bamboovir.easyblog.model.Board;
 import com.bamboovir.easyblog.model.LoginAuth;
 import com.bamboovir.easyblog.model.Post;
 import com.bamboovir.easyblog.model.SearchAtom;
 import com.bamboovir.easyblog.model.StatusInfo;
+import com.bamboovir.easyblog.model.TagType;
 import com.bamboovir.easyblog.model.User;
+import com.bamboovir.easyblog.model.UserType;
 import com.bamboovir.easyblog.storage.StorageFileNotFoundException;
 import com.bamboovir.easyblog.storage.StorageService;
+
+import io.swagger.annotations.ApiOperation;
 
 @RestController
 @RequestMapping("/post")
@@ -53,9 +60,6 @@ public class PostController {
 	private PostMapper postMapper;
 	
 	@Autowired
-	private UnAuthUserMapper unAuthUserMapper;
-	
-	@Autowired
 	private BoardMapper boardMapper;
 	
 	@Autowired
@@ -63,6 +67,9 @@ public class PostController {
 	
 	@Autowired
 	private TagMapper tagMapper;
+	
+	@Autowired
+	private BehaviorMapper behaviorMapper;
 	
     private final StorageService storageService;
 
@@ -86,19 +93,28 @@ public class PostController {
 	}
 	
 	//获取 post 文章映射
-	@GetMapping(value="/{userid}/{postid}")
+	@GetMapping(value="/{userId}/{postId}")
 	@ResponseBody
-	public Resource getPostContent(@PathVariable("userid") String userid,@PathVariable("postid") String postid) throws IOException {
+	public Resource getPostContent(@PathVariable("userId") String userId,
+			@PathVariable("postId") String postId) throws IOException {
 		Post post = new Post();
-		post.setPostId(postid);
-		post.setUserId(userid);
+		post.setPostId(postId);
+		post.setUserId(userId);
+		
+		Date now = new Date();
+		Long nowLongTime = new Long(now.getTime()/1000);
+		String behaviorId = UUID.randomUUID().toString();
+		behaviorMapper.insertBehavior(behaviorId,userId,postId, BehaviorType.READPOST.toString(),nowLongTime);
+		
 		Resource postResource = storageService.loadAsResource(post);
 		return postResource;
 	}
 	
-	//创建一个Post
+	
+	@ApiOperation("创建一个Post")
 	@PostMapping("/upload")
-	public ResponseEntity<StatusInfo> handlePostUpload(@RequestParam("file") MultipartFile file,@CookieValue(value="userId",defaultValue="") String userId,
+	public ResponseEntity<StatusInfo> createPost(@RequestParam("file") MultipartFile file,
+			@CookieValue(value="userId",defaultValue="") String userId,
 		    @CookieValue(value="userAuth",defaultValue="") String userAuth ) {
 			StatusInfo statusInfo = new StatusInfo();
 			
@@ -114,46 +130,68 @@ public class PostController {
 				
 		        storageService.store(file,newPost);
 		        
+
+				String behaviorId = UUID.randomUUID().toString();
+				behaviorMapper.insertBehavior(behaviorId,userId,postId, BehaviorType.CREATEPOST.toString(),nowLongTime);
+				
 		        statusInfo.setStatusInfo("success <- create post:" + newPost.getPostId());
 		        return new ResponseEntity<StatusInfo>(statusInfo,HttpStatus.OK);
 
 				}else {
 					statusInfo.setStatusInfo("error");
 					return new ResponseEntity<StatusInfo>(statusInfo,HttpStatus.OK);
-
 				}
 		}
 	
-	//更新一个Post的原信息
-	@PostMapping(value="/update")
+	@ApiOperation("更新一个Post的Meta / 需要登陆")
+	@PostMapping(value="/updateMeta")
 	public ResponseEntity<StatusInfo> updatePostMeta(@RequestBody Post post, 
 			@CookieValue(value="userId",defaultValue="") String userId,
 		    @CookieValue(value="userAuth",defaultValue="") String userAuth ) {
 		StatusInfo statusInfo = new StatusInfo();
 		
+		if(Auth(userId, userAuth) && postMapper.findPostByID(post.getPostId()).getUserId().equals(userId)) {
+	
+			postMapper.updateDescriptionByID(post.getDescription(), post.getPostId());
+			postMapper.updateIsPrivateByID(post.getIsPrivate(), post.getPostId());
+			postMapper.updatePostNameByID(post.getPostName(), post.getPostId());
+			//加入Cover Pic 属性
+			
+			Date now = new Date();
+			Long nowLongTime = new Long(now.getTime()/1000);
+			String behaviorId = UUID.randomUUID().toString();
+			behaviorMapper.insertBehavior(behaviorId,userId,post.getPostId(), BehaviorType.UPDATEPOST.toString(),nowLongTime);
+			
+			statusInfo.setStatusInfo("success <- Update : " + post.getPostId());
+			return new ResponseEntity<StatusInfo>(statusInfo,HttpStatus.OK);
+		}
+		
 		statusInfo.setStatusInfo("error <- Access Denied");
 		return new ResponseEntity<StatusInfo>(statusInfo,HttpStatus.OK);
 	}
 	
-	//删除 一个 User 的 全部 Post
-	@RequestMapping(value="/deletePostOfUser",method=RequestMethod.POST)
-	public ResponseEntity<StatusInfo> deletePostOfUser(@RequestParam String userid,
-				@CookieValue(value="userId",defaultValue="") String userId,
-			    @CookieValue(value="userAuth",defaultValue="") String userAuth) {
-			StatusInfo statusInfo = new StatusInfo();
-			
-			if(Auth(userId, userAuth) && (userId.equals(userid))) {
-			postMapper.deleteByUserID(userid);
-			// 在文件系统中删除 html ！！！
-			statusInfo.setStatusInfo("success <- delete");
-			return new ResponseEntity<StatusInfo>(statusInfo,HttpStatus.OK);
-			}else {
-				statusInfo.setStatusInfo("error <- Access Denied");
-				return new ResponseEntity<StatusInfo>(statusInfo,HttpStatus.OK);
-			}
-		}
+	@ApiOperation("通过PostId获取一个Post的Meta / 不需要登陆")
+	@RequestMapping(value = "/getMeta", method = RequestMethod.POST)
+	public ResponseEntity<Post> getPostMeta(@RequestBody Post post) {
 		
-	//根据 Post id 删除 Post
+		Post returnPost = null;
+		returnPost = postMapper.findPostByID(post.getPostId());
+		
+		if(returnPost != null && returnPost.getIsPrivate() == Boolean.FALSE) {
+			
+			Date now = new Date();
+			Long nowLongTime = new Long(now.getTime()/1000);
+			String behaviorId = UUID.randomUUID().toString();
+			behaviorMapper.insertBehavior(behaviorId,UserType.UNLOGINUSER.toString(),post.getPostId(), BehaviorType.GETPOST.toString(),nowLongTime);
+			
+			return new ResponseEntity<Post>(returnPost, HttpStatus.OK);
+		}else {
+			returnPost = new Post();
+			return new ResponseEntity<Post>(returnPost, HttpStatus.OK);
+		}  
+	}
+		
+	@ApiOperation("根据 Post id 删除 Post / 需要登陆")
 	@RequestMapping(value="/delete",method=RequestMethod.POST)
 	public ResponseEntity<StatusInfo> deletePost(@RequestBody Post post,
 			@CookieValue(value="userId",defaultValue="") String userId,
@@ -161,9 +199,17 @@ public class PostController {
 			
 			StatusInfo statusInfo = new StatusInfo();
 			
-			if(Auth(userId, userAuth) && (postMapper.findPostByID(post.getPostId()).getUserId().equals(userId))) {
-				postMapper.deletePostByID(post.getPostId());// 在数据库中删除 post
+			Post postTemp = postMapper.findPostByID(post.getPostId());
+			
+			if(Auth(userId, userAuth) && (postTemp != null) && (postTemp.getUserId().equals(userId))) {
+				postMapper.deleteByPostID(post.getPostId());
+				tagMapper.deleteTagByUserPostBoardIDAndType(post.getPostId(), TagType.POST.toString());;
 				// 在文件系统中删除 html !!!!
+				
+				Date now = new Date();
+				Long nowLongTime = new Long(now.getTime()/1000);
+				String behaviorId = UUID.randomUUID().toString();
+				behaviorMapper.insertBehavior(behaviorId,userId,post.getPostId(), BehaviorType.DELETEPOST.getType(),nowLongTime);
 				statusInfo.setStatusInfo("success <- delete post:" + post.getPostId());
 				return new ResponseEntity<StatusInfo>(statusInfo,HttpStatus.OK);
 			}else {
@@ -171,7 +217,6 @@ public class PostController {
 				return new ResponseEntity<StatusInfo>(statusInfo,HttpStatus.OK);
 			}
 		}
-	
 	
 	@ExceptionHandler(StorageFileNotFoundException.class)
     public ResponseEntity<?> handleStorageFileNotFound(StorageFileNotFoundException exc) {

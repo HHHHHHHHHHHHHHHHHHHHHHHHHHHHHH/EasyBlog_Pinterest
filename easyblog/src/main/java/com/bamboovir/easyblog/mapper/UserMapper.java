@@ -2,8 +2,6 @@ package com.bamboovir.easyblog.mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
-import org.apache.xpath.operations.String;
-import org.hibernate.validator.constraints.Email;
 
 import com.bamboovir.easyblog.model.User;
 
@@ -89,13 +87,58 @@ public interface UserMapper {
 			@Param("authId")String authId,
 			@Param("passwdMD5")String passwdMD5);
 	
-	@Update("")
-	void updateUser(User user);
-		
-	@Delete("")
-	void deleteAllUser();
+	@Update("UPDATE user SET type=#{type} WHERE id=#{id}")
+	void updateUserTypeByID(@Param("type") String type , @Param("id") String id);
 	
-	@Delete("")
+	@Update("UPDATE user SET gender=#{gender} WHERE id=#{id}")
+	void updateUserGenderByID(@Param("gender") String gender , @Param("id") String id);
+	
+	@Update("UPDATE user SET fullname=#{fullname} WHERE id=#{id}")
+	void updateUserFullnameByID(@Param("fullname") String fullname , @Param("id") String id);
+	
+	@Update("UPDATE user SET firstname=#{firstname} WHERE id=#{id}")
+	void updateUserFirstnameByID(@Param("firstname") String firstname , @Param("id") String id);
+	
+	@Update("UPDATE user SET lastname=#{lastname} WHERE id=#{id}")
+	void updateUserLastnameByID(@Param("lastname") String lastname , @Param("id") String id);
+	
+	@Update("UPDATE user SET email=#{email} WHERE id=#{id}")
+	void updateUserEmailByID(@Param("email") String email , @Param("id") String id);
+	
+	@Update("UPDATE user SET phonenumber=#{phonenumber} WHERE id=#{id}")
+	void updateUserPhonenumberByID(@Param("phonenumber") String phonenumber , @Param("id") String id);
+	
+	@Update("UPDATE user SET gplusUrl=#{gplusUrl} WHERE id=#{id}")
+	void updateUserGplusUrlByID(@Param("gplusUrl") String gplusUrl , @Param("id") String id);
+	
+	@Update("UPDATE user SET domainUrl=#{domainUrl} WHERE id=#{id}")
+	void updateUserDomainUrlByID(@Param("domainUrl") String domainUrl , @Param("id") String id);
+	
+	@Update("UPDATE user SET twitterUrl=#{twitterUrl} WHERE id=#{id}")
+	void updateUserTwitterUrlByID(@Param("twitterUrl") String twitterUrl , @Param("id") String id);
+	
+	@Update("UPDATE user SET facebookUrl=#{facebookUrl} WHERE id=#{id}")
+	void updateUserFacebookUrlByID(@Param("facebookUrl") String facebookUrl , @Param("id") String id);
+	
+	@Update("UPDATE user SET country=#{country} WHERE id=#{id}")
+	void updateUserCountryByID(@Param("country") String country , @Param("id") String id);
+	
+	@Update("UPDATE user SET imagemediumurl=#{imagemediumurl} WHERE id=#{id}")
+	void updateUserImageMediumUrlByID(@Param("imagemediumurl") String imagemediumurl , @Param("id") String id);
+	
+	@Update("UPDATE user SET imagesmallurl=#{imagesmallurl} WHERE id=#{id}")
+	void updateUserImageSmallUrlByID(@Param("imagesmallurl") String imagesmallurl , @Param("id") String id);
+	
+	@Update("UPDATE user SET posts=#{posts} WHERE id=#{id}")
+	void updateUserPostsByID(@Param("posts") Integer posts , @Param("id") String id);
+	
+	@Update("UPDATE user SET authId=#{authId} WHERE id=#{id}")
+	void updateUserAuthIdByID(@Param("authId") String authId , @Param("id") String id);
+	
+	@Update("UPDATE user SET passwdMD5=#{passwdMD5} WHERE id=#{id}")
+	void updateUserPasswdMD5ByID(@Param("passwdMD5") String passwdMD5 , @Param("id") String id);
+		
+	@Delete("DELETE FROM user WHERE id=#{id}")
 	void deleteUserByID(String id);
 	
 	@Update("CREATE TABLE `easyblog`.`user` (\r\n" + 
@@ -128,5 +171,4 @@ public interface UserMapper {
 	@Update("drop table user;")
 	void deleteUserTable();
 	
-
 }

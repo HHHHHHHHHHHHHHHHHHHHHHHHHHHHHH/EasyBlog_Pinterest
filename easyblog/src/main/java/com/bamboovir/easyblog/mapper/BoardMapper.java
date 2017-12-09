@@ -33,31 +33,51 @@ public interface BoardMapper {
 	@Update("drop table board;")
 	void deleteBoardTable();
 
-	@Insert("insert into board(postid,posttime,userid,logname,url,picsurl,avatarurl,tags,picnum) values("
-			+ "#{postid},#{posttime},#{userid},#{logname},#{url},#{picsurl},#{avatarurl},#{tags},#{picnum},#{isPrivate});")
-	void insertBoard(@Param("postid")String postid,
-			@Param("posttime")Long posttime,
-			@Param("userid")String userid,
-			@Param("logname")String logname,
-			@Param("url")String url,
-			@Param("picsurl")String picsurl,
-			@Param("avatarurl")String avatarurl,
-			@Param("tags")String tags,
-			@Param("picnum")Integer picnum,
-			@Param("isPrivate")Boolean isprivate);
-
-	@Delete("delete FROM post where postid=#{postid}")
-	void deleteBoardByID(@Param("postid") String postid);
+	@Insert("insert into board(boardId,userId,createdAt,boardName,discription,coverPic,postNum,isPrivate,url) values("
+			+ "#{ boardId},#{userId},#{createdAt},#{boardName},#{discription},#{coverPic},#{postNum},#{isPrivate},#{url});")
+	void insertBoard(@Param("boardId")String boardId,
+			@Param("userId")String userid,
+			@Param("createdAt")String createdAt,
+			@Param("boardName")String boardName,
+			@Param("discription")String discription,
+			@Param("coverPic")String coverPic,
+			@Param("postNum")Integer picnum,
+			@Param("isPrivate")Boolean isprivate,
+			@Param("url") String url);
 	
-	@Delete("delete FROM post where 1 = 1;")
+	@Update("UPDATE board SET boardName=#{boardName} WHERE boardId=#{boardId}")
+	void updateBoardNameByID(@Param("boardName") String boardName , @Param("boardId") String boardId);
+	
+	@Update("UPDATE board SET userId=#{userId} WHERE boardId=#{boardId}")
+	void updateUserIdByID(@Param("userId") String userId , @Param("boardId") String boardId);
+	
+	@Update("UPDATE board SET discription=#{discription} WHERE boardId=#{boardId}")
+	void updateDiscriptionByID(@Param("discription") String discription , @Param("boardId") String boardId);
+	
+	@Update("UPDATE board SET discription=#{discription} WHERE boardId=#{boardId}")
+	void updateBoardIdByID(@Param("discription") String discription , @Param("boardId") String boardId);
+	
+	@Update("UPDATE board SET coverPic=#{coverPic} WHERE boardId=#{boardId}")
+	void updateCoverPicByID(@Param("coverPic") String coverPic , @Param("boardId") String boardId);
+	
+	@Update("UPDATE board SET postNum=#{postNum} WHERE boardId=#{boardId}")
+	void updatePostNumByID(@Param("postNum") String postNum , @Param("boardId") String boardId);
+	
+	@Update("UPDATE board SET isPrivate=#{isPrivate} WHERE boardId=#{boardId}")
+	void updateIsPrivateByID(@Param("isPrivate") Boolean isPrivate , @Param("boardId") String boardId);
+	
+	@Update("UPDATE board SET url=#{url} WHERE boardId=#{boardId}")
+	void updateUrlByID(@Param("url") String url , @Param("boardId") String boardId);
+	
+	@Delete("delete FROM board where 1 = 1;")
 	void deleteAllBoard();
 	
-	@Delete("delete FROM post where userid=#{userid}")
-	void deleteByID(@Param("userid") String userid);
+	@Delete("delete FROM board where boardId=#{boardId}")
+	void deleteByBoardID(@Param("boardId") String boardId);
 	
-	@Select("select * from post where userid=#{userid}")
-	List<Board> findBoardByUserID(@Param("userid") String userid);
+	@Select("select * from board where userId=#{userId} AND isPrivate=#{isPrivate}")
+	List<Board> findBoardByUserID(@Param("userId") String userId ,@Param("isPrivate") Boolean isPrivate);
 	
-	@Select("select * from post where postid=#{postid}")
-	Board findBoardByID(@Param("postid") String postid);
+	@Select("select * from board where boardId=#{boardId}")
+	Board findBoardByBoardID(@Param("boardId") String boardId);
 }

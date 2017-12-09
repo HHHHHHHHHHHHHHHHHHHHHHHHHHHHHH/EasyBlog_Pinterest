@@ -32,7 +32,7 @@ public interface TagMapper {
 			@Param("userPostBoardId")String userPostBoardId,
 			@Param("type")String type,
 			@Param("url")String url);
-
+	
 	@Delete("delete FROM tag where tagId=#{tagId}")
 	void deleteTagByID(@Param("tagId") String tagId);
 	

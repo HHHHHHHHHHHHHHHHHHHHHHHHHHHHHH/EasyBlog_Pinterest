@@ -32,8 +32,8 @@ public interface ImageMapper {
 			@Param("userPostBoardId")String userPostBoardId,
 			@Param("url")String url);
 
-	@Delete("delete FROM image where imageId=#{imageId}")
-	void deleteImageByID(@Param("imageId") String imageId);
+	@Delete("delete FROM image where userPostBoardId=#{userPostBoardId} AND imageType=#{imageType}")
+	void deleteImageByIDAndType(@Param("userPostBoardId") String userPostBoardId , @Param("imageType") String imageType);
 	
 	@Delete("delete FROM image where 1 = 1;")
 	void deleteAllImage();

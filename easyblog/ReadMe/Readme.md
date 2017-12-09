@@ -1,8 +1,13 @@
 ## EasyBlog 
 ---
+
 [![CocoaPods](https://img.shields.io/cocoapods/l/AFNetworking.svg)]()
 
-[![](https://img.shields.io/badge/develop-Not%20completed-red.svg)]()
+[![](https://img.shields.io/badge/maven-v%204.0.0-green.svg)]()
+
+[![](https://img.shields.io/badge/develop%20Progress-70%-red.svg)]()
+
+[![](https://img.shields.io/badge/author-Huiming%20|%20Dinghao%20|%20YuHan%20|%20YuJia-red.svg)]()
 
 ### Description Of Application
 
@@ -154,6 +159,8 @@ Meet with 1NF, 2NF, 3NF, BCNF requirements
 ### Entity Relationship Diagram (ERD) For The Database
 ---
 
+[![](https://github.com/bamboovir/EasyBlog_Pinterest/blob/master/image/E-R.png)]()
+
 ### GIF Demonstration Of The Application
 ---
 
@@ -173,4 +180,21 @@ Meet with 1NF, 2NF, 3NF, BCNF requirements
 
 ----
 
+### Issue
+
+<
+1）登录后，把userid和sessionid保存到Memcached中
+2）每次访问cytoscape页面时（不是访问login.html时），都①首先访问Memcached，如果Memcached中有Sessionid，则直接验证，②如果Memcached中没有，则返回到login.html
+3）在login.html的后台登录过程中，如果login成功，则生成sessionid，并通过cookie返回给浏览器，同时，将userid & sessionid写入Memcached
+>
+
+<
+使用Redis 完成 类似 twitter 的 订阅流功能
+>
+
+<
+使用 Kafka , 完成 消息队列，进一步优化
+>
+
+### Other Things
 enjoy ( * _ * ) -> Fork

@@ -7,9 +7,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class User implements Serializable{
 	
-	 /**
-	 * 
-	 */
 		private static final long serialVersionUID = -7256914758680549121L;
 	
 		private String id;

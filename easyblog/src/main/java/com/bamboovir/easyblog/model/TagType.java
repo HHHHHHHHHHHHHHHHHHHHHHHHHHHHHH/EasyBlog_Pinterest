@@ -1,12 +1,10 @@
 package com.bamboovir.easyblog.model;
 
-
-public enum ImageType {
+public enum TagType {
 	POST("post"),
-	USER("user"),
 	BOARD("board");
 	
-	private ImageType(String type) {
+	private TagType(String type) {
 		
 	}
 }
